@@ -12,8 +12,8 @@ import {
   limit,
 } from "firebase/firestore";
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
-import AuthButtons from "@/src/components/AuthButtons";
-import MessageList from "@/src/components/MessageList";
+import { AuthButtons } from "@/src/components/AuthButtons";
+import { MessageList } from "@/src/components/MessageList";
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);

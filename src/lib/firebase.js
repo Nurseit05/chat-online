@@ -1,7 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -15,15 +15,8 @@ const firebaseConfig = {
 
 if (!getApps().length) {
   initializeApp(firebaseConfig);
-  // Analytics можно инициализировать только в браузере
-  if (typeof window !== "undefined") {
-    try {
-      getAnalytics();
-    } catch (e) {
-      // noop — analytics не всегда доступна в dev/SSR
-    }
-  }
 }
 
 export const auth = getAuth();
 export const db = getFirestore();
+export const rtdb = getDatabase(); // if you plan to use presence

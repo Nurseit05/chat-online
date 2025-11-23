@@ -7,3 +7,6 @@ body,
 #__next {
   height: 100%;
 }
+body {
+  background: #f8fafc;
+}

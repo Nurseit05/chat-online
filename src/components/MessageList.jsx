@@ -1,12 +1,11 @@
-"use client";
-import MessageItem from "./MessageItem";
+import { MessageItem } from "./MessageItem";
 
-export default function MessageList({ messages }) {
+export function MessageList({ messages }) {
   return (
-    <div className="space-y-3">
-      {messages.map((msg) => (
-        <MessageItem key={msg.id} message={msg} />
+    <ul className="space-y-3">
+      {messages.map((m) => (
+        <MessageItem key={m.id} message={m} />
       ))}
-    </div>
+    </ul>
   );
 }
