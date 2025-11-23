@@ -4,11 +4,13 @@ import { auth } from "@/src/lib/firebase";
 import { createChannel } from "@/src/lib/chatService";
 import { AuthButtons } from "@/src/components/AuthButtons";
 import { ChannelsList } from "@/src/components/ChannelsList";
+import { useAuth } from "@/src/hook/Auth";
 
 export default function ChannelsPage() {
   const [user, setUser] = useState(null);
-  const [channels, setChannels] = useState([]);
+  const [channels, _setChannels] = useState([]);
   const [name, setName] = useState("");
+  const { signInGoogle, signOutUser } = useAuth();
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => setUser(u));
@@ -34,7 +36,11 @@ export default function ChannelsPage() {
       <div className="w-2/5">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">Каналы</h2>
-          <AuthButtons user={user} />
+          <AuthButtons
+            onSignIn={signInGoogle}
+            onSignOut={signOutUser}
+            user={user}
+          />
         </div>
 
         <div className="mb-4">
